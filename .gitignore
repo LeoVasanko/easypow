@@ -1,0 +1,16 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+/dist/
+wheels/
+*.egg-info
+
+.*
+!.gitignore
+!*/.prettierrc.json
+*.lock
+
+# C build artifacts
+/c/solve
+/c/solve_sodium

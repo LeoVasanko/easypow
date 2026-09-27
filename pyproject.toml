@@ -1,0 +1,61 @@
+[build-system]
+requires = [
+    "hatchling>=1.25.0",
+    "hatch-vcs>=0.4.0",
+]
+build-backend = "hatchling.build"
+
+[project]
+name = "easypow"
+dynamic = ["version"]
+description = "Antibot Proof-of-Work protection to verify browsers on web apps."
+authors = [
+    { name = "Leo Vasanko" },
+]
+keywords = ["proof-of-work", "antibot", "web-security"]
+readme = "README.md"
+license = "MIT OR Unlicense"
+requires-python = ">=3.11"
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Security",
+]
+dependencies = [
+    "base64url>=1.1.1",
+]
+
+[project.urls]
+Repository = "https://git.zi.fi/LeoVasanko/easypow"
+Issues = "https://github.com/LeoVasanko/easypow"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["easypow"]
+
+[tool.ruff]
+extend-exclude = ["*.md"]
+
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812",  # Conflicts with the formatter
+    "CPY",   # No copyright notices
+    "D107",  # Missing docstring in __init__
+    "D203",  # incompatible with D211
+    "D213",  # incompatible with D212
+    "PLR2004",  # Magic values are clear enough in this domain
+]
+
+[tool.ruff.lint.per-file-ignores]
+"easypow/__main__.py" = ["T201"]  # CLI prints to stdout/stderr by design
+"tests/**" = ["D", "INP", "PLR2004", "S101", "S603"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
